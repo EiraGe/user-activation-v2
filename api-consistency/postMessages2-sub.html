@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<!--
+  This is a part of the demo:
+  https://mustaqahmed.github.io/user-activation-v2/api-consistency/postMessages2.html
+-->
+<head>
+  <title>User Activation v2 with parent-to-child postMessages: cross-origin subframe</title>
+  <link rel="stylesheet"
+        href="https://mustaqahmed.github.io/user-activation-v2/api-consistency/styles.css">
+  <script src="https://mustaqahmed.github.io/user-activation-v2/api-consistency/common.js"></script>
+  <script src="https://mustaqahmed.github.io/user-activation-v2/api-consistency/api-tester.js"></script>
+  <script>
+    function init() {
+      apiTester.setupApiCaller();
+
+      window.addEventListener("message", (e) => {
+        log("received: " + e.data, "yellow");
+        if (e.data.startsWith("call_"))
+          apiTester.callApi(e.data.slice(5));
+      });
+    }
+  </script>
+</head>
+<body onload="init()">
+  <div id="api-test-area"></div>
+
+  <h2>eirage.github.io</h2>
+
+  <div id="log"><b>Log:</b> </div>
+</body>
+
+<script>
+</script>
