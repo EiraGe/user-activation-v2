@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>User activation propagation</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="common.js"></script>
+</head>
+<body onload="commonInit('a')">
+  <div class="instruction">
+    <b>With User Activation v2, the activation is available only in ancestor
+    (container) frames:</b>&emsp;
+      1.&nbsp;Turn on repeated popup attempts in any frame.&emsp;
+      2.&nbsp;Click on any frame to "activate" it.&emsp;
+      3.&nbsp;Check the logs for popup success/failure.&emsp;
+  </div>
+
+  <h1 id="frame-label">Frame</h1>
+
+  <p>
+    <label>Try to popup every 5sec?</label>
+    <input id="try-checkbox" type="checkbox"></input>
+  </p>
+
+  <div id="log"><b>Log:</b> </div>
+
+  <iframe
+    src="subframeA1.html"
+    sandbox="allow-same-origin allow-scripts allow-popups">
+  </iframe>
+
+  <iframe
+    src="https://www.example.com"
+    style="border: 2px solid blue;"
+    sandbox="allow-same-origin allow-scripts allow-popups">
+  </iframe>
+</body>
+</html>
