@@ -1,11 +1,15 @@
 <!DOCTYPE html>
+<!--
+    This is a part of the demo:
+      https://mustaqahmed.github.io/user-activation-v2/propagation/
+-->
 <html>
 <head>
   <title>User activation propagation</title>
   <link rel="stylesheet" href="styles.css">
   <script src="common.js"></script>
 </head>
-<body onload="commonInit('a')">
+<body onload="commonInit('b')">
   <div class="instruction">
     <b>With User Activation v2, the activation is available only in ancestor
     (container) frames:</b>&emsp;
@@ -24,12 +28,12 @@
   <div id="log"><b>Log:</b> </div>
 
   <iframe
-    src="subframeA1.html"
+    src="https://mustaqahmed.github.io/user-activation-v2/propagation/subframeA1.html"
     sandbox="allow-same-origin allow-scripts allow-popups">
   </iframe>
 
   <iframe
-    src="https://www.example.com"
+    src="https://eirage.github.io/user-activation-v2/propagation/subframeB2.html"
     style="border: 2px solid blue;"
     sandbox="allow-same-origin allow-scripts allow-popups">
   </iframe>
