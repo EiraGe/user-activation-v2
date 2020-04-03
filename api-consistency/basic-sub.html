@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<!--
+  This is a part of the demo:
+  https://mustaqahmed.github.io/user-activation-v2/api-consistency/basic-topframe.html
+-->
+<html>
+<head>
+  <title>User activation dependency test: cross-origin subframe</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="common.js"></script>
+  <script src="api-tester.js"></script>
+  <script>
+    function init() {
+      apiTester.setupApiSelector();
+      apiTester.setupApiCaller();
+
+      let delays = [-1, 1100, 5100, 10100];
+
+      for (let i = 0; i < 4; i++) {
+        $("button" + i).addEventListener("click", e => {
+          log(e.target.id + " clicked", "black");
+          if (i == 0)
+            apiTester.callApi(apiTester.getSelectedApi());
+          else
+            setTimeout(() => apiTester.callApi(apiTester.getSelectedApi()), delays[i]);
+        });
+      }
+
+      log("onload event", "black");
+      apiTester.callApi(apiTester.getSelectedApi());
+    }
+  </script>
+</head>
+<body onload="init()">
+  <div id="api-elem-area"></div>
+
+  <div id="user-interaction-area">
+    <p>
+      <label>User-activation-gated API to test:</label>
+      <select id="test-api">
+      </select>
+    </p>
+
+    <p>
+      <input id="button0" type="button" value="Button 0" />
+      tests without a setTimeout() call.
+    </p>
+
+    <p>
+      <input id="button1" type="button" value="Button 1" />
+      tests with a setTimeout() delay of 1.1sec.
+    </p>
+
+    <p>
+      <input id="button2" type="button" value="Button 2" />
+      tests with a setTimeout() delay of 5.1sec.
+    </p>
+
+    <p>
+      <input id="button3" type="button" value="Button 3" />
+      tests with a setTimeout() delay of 10.1sec.
+    </p>
+  </div>
+
+  <div id="log"><b>Log:</b> </div>
+</body>
+</html>
